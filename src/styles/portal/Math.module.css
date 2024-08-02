@@ -1,0 +1,18 @@
+.heading{
+    text-align: center;
+}
+.subMathHeading{
+    border-bottom: 1px solid transparent; /* Initial solid border to apply the image */
+    border-image: 
+        repeating-linear-gradient(90deg, rgb(167, 167, 167) 0, rgb(119, 119, 119) 2px, transparent 1px, transparent 10px) 10; 
+    border-image-slice: 1;
+    padding-bottom: 5px;
+}
+.mathbtn{
+    margin-top: 20px;
+    /* border: 1px solid rgb(115, 255, 0); */
+}
+.subbtnFlex{
+    /* border: 1px solid red; */
+    gap: 20px;
+}

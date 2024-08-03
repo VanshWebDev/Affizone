@@ -1,0 +1,112 @@
+.secondSecContainer {
+  display: flex;
+  /* border: 1px solid red; */
+  position: relative;
+}
+
+.searchContainer {
+  display: flex;
+  animation: anim 0.5s linear 0s 1 alternate;
+  border: 1px solid rgb(177, 177, 177);
+  border-radius: 5px;
+}
+
+.searchContainer input {
+  border: none;
+  padding: 5px 8px;
+  outline: none;
+  border-radius: 5px;
+  width: 400px;
+}
+.searchContainer button {
+  border: none;
+  padding: 5px 10px;
+  padding-bottom: 1px;
+  cursor: pointer;
+  background-color: aliceblue;
+}
+
+.ifSearchResultBoxNot{
+    display: none;
+}
+
+.ifSearchResultBox {
+  position: absolute;
+  border: 1px solid rgb(194, 193, 193);
+  border-radius: 0px 0px 5px 5px;
+  /* bottom: 20px; */
+  top: 45px;
+  width: 100%;
+  padding: 5px;
+  /* max-height: 400px; */
+  backdrop-filter: blur(20px) saturate(250%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
+  background-color: rgba(255, 255, 255, 0.37) !important;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: anim2 0.5s linear 0s 1 alternate;
+}
+
+@keyframes anim {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 10;
+  }
+}
+@keyframes anim2 {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 10;
+  }
+}
+
+@media (max-width: 950px) {
+  .searchContainer input {
+    width: 350px;
+  }
+}
+@media (max-width: 900px) {
+  .searchContainer input {
+    width: 300px;
+  }
+}
+@media (max-width: 860px) {
+  .searchContainer input {
+    width: 250px;
+  }
+  .secondSecContainer {
+    transform: translate(50px);
+  }
+}
+@media (max-width: 750px) {
+  .searchContainer input {
+    width: 250px;
+  }
+  .secondSecContainer {
+    transform: none;
+  }
+}
+@media (max-width: 420px) {
+  .searchContainer input {
+    width: 200px;
+  }
+}
+@media (max-width: 350px) {
+  .searchContainer input {
+    width: 150px;
+  }
+}

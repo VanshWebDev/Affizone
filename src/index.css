@@ -1,6 +1,29 @@
 *{
-  padding: 0px;
   margin: 0px;
+  padding: 0px;
   box-sizing: border-box;
+  font-family: 'Cabinet Grotesk', sans-serif;
+}
+html,
+body {
+  /* background-color: #e4e4e4; */
+  background-color: #f1f7fc;
+  /* background-color: #f3f4e5; */
   -webkit-tap-highlight-color: transparent;
+}
+[web-theme="dark"] {
+  --text: rgb(255, 255, 255);
+  --background: rgb(0, 0, 0);
+  --googleBtnBackground: #000;
+  
+}
+/* nav */
+[web-theme="dark"] {
+  --googleBtnBorder: #868686;
+}
+
+[web-theme="light"] {
+  --text: rgb(0, 0, 0);
+  --background: #ffffff;
+  --googleBtnBackground: #ffffff;
 }

@@ -1,0 +1,45 @@
+.navBarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(207, 206, 206);
+  padding: 8px 25px;
+  position: relative;
+}
+
+.firstSec {
+  display: flex;
+  gap: 10px;
+}
+
+.secondSec {
+  position: absolute;
+  /* right: 50%; */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 1s;
+}
+
+
+.thirdSecContainer {
+  display: flex;
+  gap: 20px;
+  transform: translate(0px, 2px);
+  /* border: 1px solid red; */
+  cursor: pointer;
+}
+
+.tshirt,
+.watch,
+.shoes {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+@media (max-width: 550px) {
+    .navBarContainer{
+        padding: 8px 10px;
+    }
+}

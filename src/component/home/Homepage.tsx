@@ -1,7 +1,8 @@
 import styles from "../../styles/Homepage/Homepage.module.css";
 import AlertDialog from "../../component/Auth/Form";
 import mind from "../../assets/mind.svg"
-import Navbar from "./Navbar";
+import Navbar from "./navbar/Navbar";
+import BottomNav from "./bottomNav/BottomNav";
 
 function Homepage() {
   return (
@@ -41,6 +42,7 @@ function Homepage() {
           </div>
         </div>
       </main>
+      <BottomNav />
     </header>
   );
 }

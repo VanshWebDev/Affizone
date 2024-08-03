@@ -1,0 +1,79 @@
+.optionBoxContainer {
+  width: 280px;
+  backdrop-filter: blur(10px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(5px) saturate(200%) !important;
+  background-color: rgba(17, 25, 40, 0) !important;
+}
+
+.optionBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.firstSec {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-right: 1px dashed rgb(179, 179, 179);
+}
+.firstSec div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.secondSec {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  border-right: 1px dashed rgb(179, 179, 179);
+}
+
+.secondSec div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.thirdSec {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+}
+.thirdSec div {
+  margin: 5px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.text {
+  text-align: left;
+  width: 100%;
+  margin-left: 5px;
+}
+
+.firstSec div:hover,
+.secondSec div:hover,
+.thirdSec div:hover{
+    transform: scale(1.05);
+}
+.firstSec div:active,
+.secondSec div:active,
+.thirdSec div:active{
+    transform: scale(1);
+}

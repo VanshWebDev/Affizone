@@ -1,0 +1,18 @@
+.MenueOptionsContainer {
+  /* border: 1px solid red; */
+}
+
+.menutOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.shoes,
+.tshirt,
+.watch {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  /* border: 1px solid green; */
+}

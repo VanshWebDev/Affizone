@@ -4,13 +4,7 @@
   /* overflow: hidden; */
 }
 /* navbar */
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px;
-  min-height: 50px;
-}
+
 .logo img {
   width: 30px;
   height: 30px;

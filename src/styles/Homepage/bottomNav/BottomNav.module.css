@@ -1,0 +1,48 @@
+.BottomNavContainer {
+  position: absolute;
+  border: 1px solid rgba(17, 17, 17, 0.192);
+  background: #fff;
+  border-radius: 10px;
+  height: 55px;
+  bottom: 0px;
+  /* right: 50%; */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+  backdrop-filter: blur(10px) saturate(200%);
+  -webkit-backdrop-filter: blur(5px) saturate(200%);
+  background-color: rgba(17, 25, 40, 0);
+}
+
+.firstBlock,
+.secondBlock,
+.thirdBlock {
+  width: 90px;
+  border-right: 1px solid rgb(151, 151, 151);
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.firstBlock div,
+.secondBlock div,
+.thirdBlock div {
+  transition: all 0.2s;
+}
+.firstBlock div:hover,
+.secondBlock div:hover,
+.thirdBlock div:hover {
+  transform: scale(1.2) translateY(-2px);
+}
+
+.firstBlock div:active,
+.secondBlock div:active,
+.thirdBlock div:active {
+  transform: scale(1) translateY(0px);
+}
+
+.thirdBlock {
+  border-right: none;
+}

@@ -1,32 +1,19 @@
-import { Popover } from "antd"
-import KeyboardArrowRightTwoToneIcon from '@mui/icons-material/KeyboardArrowDownTwoTone';
-import OptionBox from "./OptionBox";
-import styles from "../../../styles/Homepage/navbar/MenutOptions.module.css"
-
+import styles from "../../../styles/Homepage/navbar/MenutOptions.module.css";
+import ShoeDropdownOption from "./ShoeDropdownOption";
+import TshirtDropdownOption from "./TshirtDropdownOption";
+import WatchDropdownOption from "./WatchDropdownOption";
 function MenueOptions() {
   return (
     <div className={styles.menueOptionsContainer}>
-    
-    <div className={styles.menutOptions}>
-       <Popover content={<OptionBox />} placement="rightBottom" trigger="hover">
-         <div className={styles.shoes}>Shoes <KeyboardArrowRightTwoToneIcon /></div>
-       </Popover>
+      <div className={styles.menutOptions}>
+        <ShoeDropdownOption />
 
-       <Popover content={<OptionBox />} placement="rightBottom" trigger="hover">
-         <div className={styles.tshirt}>T-Shirt <KeyboardArrowRightTwoToneIcon /></div>
-       </Popover>
+        <TshirtDropdownOption />
 
-       <Popover content={<OptionBox />} placement="rightBottom" trigger="hover">
-         <div className={styles.watch}>Watch <KeyboardArrowRightTwoToneIcon /></div>
-       </Popover>
+        <WatchDropdownOption />
+      </div>
     </div>
-
-    <div>
-    
-    </div>
-
-    </div>
-  )
+  );
 }
 
 export default MenueOptions;

@@ -38,6 +38,25 @@
   cursor: pointer;
 }
 
+.drawerContainer{
+  display: none;
+}
+
+.firstSecContainer{
+  display: flex;
+  gap: 10px;
+  transition: all 1s;
+}
+
+@media (max-width: 750px) {
+    .firstSecContainer{
+        display: none;
+    }
+    .drawerContainer{
+      display: block;
+    }
+}
+
 @media (max-width: 550px) {
     .navBarContainer{
         padding: 8px 10px;

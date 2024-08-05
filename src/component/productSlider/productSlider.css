@@ -1,0 +1,316 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=League+Gothic&display=swap");
+
+:root {
+  --w-column: 200px;
+}
+
+.carousel {
+  /* border: 1px solid red; */
+  height: calc(100vh - 48px);
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel .list {
+  /* border: 1px solid green; */
+  /* width: min(1200px, 100vw); */
+  /* max-width: 1440px; */
+  margin: auto;
+  height: 100%;
+  position: relative;
+}
+
+.carousel .list .item {
+  position: absolute;
+  inset: 0;
+}
+
+.carousel .list .item figure {
+  position: absolute;
+  width: 70%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel .list .item figure img {
+  width: 80%;
+  transform: rotate(-30deg);
+}
+
+.carousel .list .item figure::before {
+  content: "";
+  position: absolute;
+  background-color: #0b0b1b;
+  width: 100%;
+  height: 100px;
+  top: 150%;
+  left: 50px;
+  border-radius: 50%;
+  filter: blur(50px);
+}
+
+.carousel .list .item .content {
+  position: absolute;
+  z-index: 20;
+  width: 70%;
+  height: 100%;
+  right: var(--w-column);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  gap: 20px;
+}
+
+.carousel .list .item .content .category {
+  font-weight: 500;
+}
+
+.carousel .list .item .content h2 {
+  font-family: "League Gothic";
+  font-size: 8em;
+  line-height: 1em;
+}
+
+.carousel .list .item .content .description {
+  align-items: center;
+  color: #fff8;
+  max-width: 400px;
+  font-size: small;
+  text-align: right;
+}
+
+.carousel .list .item .content .description i {
+  height: 50px;
+  color: #ffea7c;
+  font-size: 2em;
+  border: 1px solid #659cdf;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel .list .item .more {
+  display: grid;
+  grid-template-columns: repeat(2, 120px);
+  gap: 20px;
+  grid-template-rows: 35px;
+}
+
+.carousel .list .item .more button {
+  border-radius: 10px;
+  font-family: "League Gothic";
+  background-color: transparent;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid rgb(187, 187, 187);
+}
+
+.carousel .list .item .more button:nth-child(1) {
+  /* background-image: linear-gradient(to right, #81baa0, #46a39c); */
+}
+
+.carousel .list .item .more button:nth-child(2) {
+  /* border: 2px solid transparent; */
+  /* background: linear-gradient(#242745, #242745) padding-box,
+    linear-gradient(to right, #81baa0, #46a39c) border-box; */
+}
+
+.carousel .list .item .more button:nth-child(2) i {
+  /* margin-right: 10px; */
+}
+
+.carousel .list::after {
+  content: "";
+  position: absolute;
+  right: var(--w-column);
+  width: var(--w-column);
+  height: 100%;
+  pointer-events: none;
+}
+
+.carousel .list::before {
+  content: "";
+  position: absolute;
+  z-index: 10;
+  height: var(--w-column);
+  width: 100%;
+  top: 52%;
+  pointer-events: none;
+}
+
+.carousel .arrows {
+  /* width: min(1200px, 90vw); */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -25px);
+  pointer-events: none;
+  z-index: 100;
+}
+
+.carousel .arrows button {
+  border: none;
+  color: rgba(75, 75, 75, 0.467);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: 0.5s;
+  background-color: transparent;
+}
+
+.carousel .arrows button:hover {
+  color: #686868;
+}
+
+.carousel .indicators {
+  position: absolute;
+  top: 52%;
+  height: var(--w-column);
+  width: min(1200px, 90vw);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+  justify-content: end;
+  gap: 10px;
+  display: none;
+}
+
+.carousel .indicators .number {
+  font-family: "League Gothic";
+  font-size: 7vw;
+}
+
+.carousel .indicators ul {
+  display: flex;
+  gap: 10px;
+}
+
+.carousel .indicators ul li {
+  width: 50px;
+  height: 5px;
+  background-color: #659cdf;
+  border-radius: 10px;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.carousel .indicators ul li.active {
+  background-color: yellow;
+}
+
+.carousel {
+  --calculation: 1; /* 1 or -1 */
+}
+
+.carousel .list .item {
+  transform: translateX(calc(100vw * var(--calculation)));
+  transition: 0.5s;
+  opacity: 0;
+}
+
+.carousel .list .item figure img {
+  transform: rotate(0deg);
+  transition: transform 0.5s;
+  transition-delay: 0.3s;
+}
+
+.carousel .list .item .content .category,
+.carousel .list .item .content h2,
+.carousel .list .item .content .description,
+.carousel .list .item .content .more {
+  transform: translateX(calc(200px * var(--calculation)));
+  transition: 0.7s;
+  opacity: 0;
+  transition-delay: 0.3s;
+}
+
+.carousel .list .item .content h2 {
+  transition-delay: 0.5s;
+  color: rgb(0, 110, 255);
+}
+
+.carousel .list .item .content .description {
+  transition-delay: 0.7s;
+  color: #000;
+}
+
+.carousel .list .item .content .more {
+  transition-delay: 0.9s;
+}
+
+.carousel .list .item.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.carousel .list .item.active figure img {
+  transform: rotate(-20deg);
+}
+
+.carousel .list .item.active .content .category,
+.carousel .list .item.active .content h2,
+.carousel .list .item.active .content .description,
+.carousel .list .item.active .content .more {
+  transform: translateX(0px);
+  opacity: 1;
+}
+
+.carousel .list .item.activeOld {
+  transform: translateX(calc(-100vw * var(--calculation)));
+}
+
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+  :root {
+    --w-column: 100px;
+  }
+
+  .carousel {
+    height: 60vh;
+  }
+
+  .carousel .list .item .content h2 {
+    font-size: 5em;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  :root {
+    --w-column: 50px;
+  }
+
+  .carousel {
+    height: 100vh;
+  }
+
+  .carousel .list .item .content {
+    justify-content: end;
+    padding-bottom: 100px;
+  }
+
+  .carousel .list .item .content h2 {
+    font-size: 5em;
+  }
+
+  .carousel .list .item figure {
+    width: 110%;
+    transform: translateY(0);
+    top: 200px;
+    left: -30px;
+  }
+
+  .carousel .indicators .number {
+    font-size: 10em;
+    transform: translateX(50px);
+    opacity: 0.5;
+  }
+}

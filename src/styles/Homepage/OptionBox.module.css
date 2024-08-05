@@ -1,5 +1,5 @@
 .optionBoxContainer {
-  width: 280px;
+  width: 300px;
   backdrop-filter: blur(10px) saturate(200%) !important;
   -webkit-backdrop-filter: blur(5px) saturate(200%) !important;
   background-color: rgba(167, 167, 167, 0) !important;
@@ -14,6 +14,7 @@
 .firstSec {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 100%;
   border-right: 1px dashed rgb(179, 179, 179);
 }
@@ -29,10 +30,12 @@
 .secondSec {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  justify-content: space-between;
+  /* align-items: center; */
   width: 100%;
   border-right: 1px dashed rgb(179, 179, 179);
+  /* border: 1px solid red; */
+  padding-left: 10px;
 }
 
 .secondSec div {
@@ -47,8 +50,9 @@
 .thirdSec {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: space-between;
+  /* align-items: center; */
+  padding-left: 10px;
   width: 100%;
 }
 .thirdSec div {

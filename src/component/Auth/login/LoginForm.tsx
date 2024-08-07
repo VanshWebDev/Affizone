@@ -1,21 +1,19 @@
-import  { FC, useState } from "react";
+import  { FC, Suspense, lazy, useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Form, Input, message } from "antd";
 import axios, {AxiosError} from "axios";
 import { useDispatch } from "react-redux";
-import GoogleAuth from "./GoogleAuth";
-import PropTypes from "prop-types";
+import { LoadingOutlined } from "@ant-design/icons";
+const GoogleAuth = lazy(() => import('../GoogleAuth'));// import PropTypes from "prop-types";
+
 import {
   ReRender,
   canResetpwd,
   userEmail,
-} from "../../features/counter/counterSlice";
+} from "../../../features/counter/counterSlice";
 import { useNavigate } from "react-router-dom";
-// import { Key } from "@mui/icons-material";
+import styles from "../../../styles/auth/login/LoginFrom.module.css"
 
-interface LoginProps {
-  close: ()=> void;
-}
 // Define the type for the form values expected in the login form
 interface LoginFormValues {
   emailOrUsername: string;
@@ -28,7 +26,7 @@ interface ApiResponse {
   emailSent: boolean;
 }
 
-const Login: FC<LoginProps> = ({ close }) => {
+const LoginForm: FC = () => {
   const backendApiUrl = import.meta.env.VITE_BACKEND_API_URL;
   const [loading, setLoading] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
@@ -110,18 +108,10 @@ const Login: FC<LoginProps> = ({ close }) => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        margin:'10px 0px',
-        marginTop:'15px'
-      }}
-    >
+    <div className={styles.loginFormContainer}>
       {contextHolder}
-      <p style={{ marginBottom: "8px", fontWeight: "bold" }}>Login or Signup</p>
+      <div className={styles.loginForm}>
+      <p className={styles.title}>Login</p>
       <Form
         form={form}
         style={{ width: "300px" }}
@@ -131,26 +121,31 @@ const Login: FC<LoginProps> = ({ close }) => {
         }}
         onFinish={onFinishLogin}
       >
+        <p>Email</p>
         <Form.Item
           name="emailOrUsername"
           rules={[
             {
               required: true,
-              message: "Please input your email!",
+              message: "Input your email!",
             },
           ]}
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
             placeholder="Email or Username"
+            className={styles.emailInput}
           />
         </Form.Item>
+        <div className={styles.passwordInput}>
+        <p>Password</p>
         <Form.Item
+        style={{marginBottom:'5px'}}
           name="password"
           rules={[
             {
               required: true,
-              message: "Please input your Password!",
+              message: "Input your Password!",
             },
           ]}
         >
@@ -158,36 +153,28 @@ const Login: FC<LoginProps> = ({ close }) => {
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
             placeholder="Password"
+            className={styles.pwdInput}
           />
         </Form.Item>
-        <p
-          style={{ cursor: "pointer", color: "blue", marginBottom: "12px" }}
-          onClick={handleForgotPassword}
-        >
-          Forgot password?
-        </p>
+        <div className={styles.forgotPwd}><div onClick={handleForgotPassword}>Forgot password?</div></div>
+        </div>
         <Form.Item>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <Button
-              style={{ display: "inline" }}
-              loading={loading}
-              type="primary"
-              htmlType="submit"
-              className="form-button"
-            >
-              Log in
-            </Button>
-            &nbsp; or &nbsp;
-            <GoogleAuth />
+          <div className={styles.actionBtns}>
+            <Button loading={loading} type="link" htmlType="submit" className={styles.signInBtn}> Sign in </Button>
+            <p className={styles.dontHaveAccount}>Don't have an account <span onClick={()=>navigate("/signup")}>Sign up</span></p>
+            <p className={styles.orWith}>or with</p>
+            <div className={styles.googleAuthContainer}>
+                <Suspense fallback={<LoadingOutlined />}>
+                  <GoogleAuth authMethod="signinwithgoogle"/>
+                </Suspense>
+              </div>
           </div>
         </Form.Item>
       </Form>
+      </div>
     </div>
   );
 };
 
-Login.propTypes = {
-  close: PropTypes.func.isRequired,
-};
 
-export default Login;
+export default LoginForm;

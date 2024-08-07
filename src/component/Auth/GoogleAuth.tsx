@@ -11,10 +11,11 @@ import {
   ReRender,
   ReRenderOfSignup,
 } from "../../features/counter/counterSlice";
+import { FC } from "react";
 
 const clientId = import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID;
 
-const GoogleAuth = () => {
+const GoogleAuth: FC<{ authMethod: string }> = ({ authMethod }) => {
   const backendApiUrl = import.meta.env.VITE_BACKEND_API_URL;
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,13 +24,15 @@ const GoogleAuth = () => {
     const { credential: token } = response;
 
     try {
+      const ApiUrl = `${backendApiUrl}/auth/${authMethod}`;
       const res = await axios.post(
-        `${backendApiUrl}/auth/signup`,
+        ApiUrl,
         {
           token,
         },
         { withCredentials: true }
       );
+      console.log(res)
       message.success(res.data.message);
       if (res.data.newUser) {
         dispatch(ReRenderOfSignup());
@@ -37,10 +40,11 @@ const GoogleAuth = () => {
       } else dispatch(ReRender());
     } catch (error: unknown) {
       const axiosError = error as AxiosError<{ message: string }>;
-      message.error(axiosError?.response?.data?.message || "try after some time");
+      message.error(
+        axiosError?.response?.data?.message || "try after some time"
+      );
     }
   };
-
 
   return (
     <GoogleOAuthProvider clientId={clientId}>
@@ -49,11 +53,15 @@ const GoogleAuth = () => {
         onError={() => {
           console.log("err during signup");
         }}
-        size="medium"
-        shape="rectangular"
-        width={10}
+        size="large"
+        shape="square"
+        width="50"
         text="continue_with"
         type="standard"
+        theme="outline"
+        auto_select
+        useOneTap
+        logo_alignment="center"
       />
     </GoogleOAuthProvider>
   );

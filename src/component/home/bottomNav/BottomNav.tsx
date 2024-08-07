@@ -3,11 +3,11 @@ import styles from "../../../styles/Homepage/bottomNav/BottomNav.module.css";
 import OptionBox from "./OptionBox";
 import logo from "../../../assets/logo.png"
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
-// import { useSelector } from "react-redux";
-// import { RootState } from "../../../../redux/store";
 import "./Bottom.css";
+
+import ProfileOption from "./ProfileOption";
 function BottomNav() {
-  // const { userInfo } = useSelector((state: RootState) => state.counter);
+
   return (
     <div className={styles.BottomNavContainer}>
       <div className={styles.firstBlock}>
@@ -29,9 +29,9 @@ function BottomNav() {
       </Popover>
 
       <div className={styles.thirdBlock}>
-        <div>
-          <Avatar src="https://sadgirldp.com/wp-content/uploads/Cute-Sad-Girl-Dp-Cartoon-81.jpeg" />
-        </div>
+        {/* <div> */}
+          <ProfileOption />
+        {/* </div> */}
       </div>
     </div>
   );

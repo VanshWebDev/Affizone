@@ -1,7 +1,8 @@
 import styles from "../../styles/Homepage/Homepage.module.css";
 import Navbar from "./navbar/Navbar";
 import BottomNav from "./bottomNav/BottomNav";
-import ProductSlider from "../productSlider/ProductSlider";
+// import ProductSlider from "./productSlider/ProductSlider";
+import SingleSlider from "./productSlider/SingleSlider";
 
 function Homepage() {
   return (
@@ -12,7 +13,7 @@ function Homepage() {
 
       <main className={styles.main}>
     
-       <ProductSlider />
+       <SingleSlider />
       </main>
       <BottomNav />
     </header>

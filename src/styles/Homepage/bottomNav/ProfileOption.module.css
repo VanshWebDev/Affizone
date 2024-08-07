@@ -1,0 +1,4 @@
+.ifUserInfoUndefined{
+    font-size: 34px;
+    transform: translateY(5px);
+}

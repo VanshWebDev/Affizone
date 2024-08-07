@@ -1,6 +1,6 @@
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import AuthForm from "./AuthForm";
+import AuthForm from "./login/LoginForm";
 import React, { useState } from "react";
 import { Button } from "antd";
 
@@ -28,7 +28,7 @@ export default function AlertDialog() {
         aria-describedby="alert-dialog-description"
       >
         <DialogContent>
-          <AuthForm close={handleClose} />
+          <AuthForm />
         </DialogContent>
       </Dialog>
     </React.Fragment>

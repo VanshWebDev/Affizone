@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface UserInfoo {
   id: string | undefined;
-  username: string | undefined;
+  affiname: string | undefined;
   email: string | undefined;
   interest: string[]; // Assuming interests are strings
   picture: string | undefined; // Assuming picture is a string
@@ -28,7 +28,7 @@ const initialState: CounterState = {
   userEmail: "",
   interest: false,
   userInfo: {
-    username: undefined,
+    affiname: undefined,
     email: undefined,
     id: undefined,
     interest: [],

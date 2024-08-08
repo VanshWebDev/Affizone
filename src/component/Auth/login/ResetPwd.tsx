@@ -3,8 +3,8 @@ import { Form, Input, Button, message } from "antd";
 import axios, { AxiosError } from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { CounterState } from "../../features/counter/counterSlice";
-
+import { CounterState } from "../../../features/counter/counterSlice";
+import styles from "../../../styles/auth/login/ResetPwd.module.css";
 const ResetPasswordPage = () => {
   const backendApiUrl = import.meta.env.VITE_BACKEND_API_URL;
   interface RootState {
@@ -42,7 +42,7 @@ const ResetPasswordPage = () => {
       console.log(response);
       const { message: apiMsg, isPwdReset } = response.data;
       message.success(apiMsg);
-      if (isPwdReset) navigate("/");
+      if (isPwdReset) navigate("/login");
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -79,36 +79,22 @@ const ResetPasswordPage = () => {
   const feedbackColor = feedback === "Password is strong." ? "green" : "red";
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <div
-        style={{
-          border: "1px solid #dedede",
-          padding: "20px",
-          borderRadius: "10px",
-          background: "#ebebeb",
-        }}
-      >
-        <center style={{marginBottom:'10px'}}>Change Password</center>
+    <div className={styles.resetPwdContainer} >
+      <div className={styles.resetPwd}>
+        <p className={styles.title}>Change Password</p>
         <Form
-          style={{ width: "300px" }}
           name="reset_password_form"
           initialValues={{ remember: true }}
           onFinish={onFinish}
         >
+          <p>OTP</p>
           <Form.Item
             name="otp"
             rules={[{ required: true, message: "Please input your OTP!" }]}
           >
-            <Input placeholder="Enter OTP" type="number" />
+            <Input className={styles.otpInput} placeholder="Enter OTP" type="number" />
           </Form.Item>
-
+          <p>Password</p>
           <Form.Item
             name="newPassword"
             hasFeedback
@@ -129,9 +115,10 @@ const ResetPasswordPage = () => {
               placeholder="Enter new password"
               value={password}
               onChange={handlePasswordChange}
+              className={styles.passwordInput}
             />
           </Form.Item>
-
+          <p>confirm Password</p>
           <Form.Item
             name="confirmPassword"
             dependencies={["newPassword"]}
@@ -150,7 +137,9 @@ const ResetPasswordPage = () => {
               }),
             ]}
           >
-            <Input.Password placeholder="Confirm new password" />
+            <Input.Password 
+              className={styles.passwordInput}
+              placeholder="Confirm new password" />
           </Form.Item>
 
           <Form.Item>
@@ -159,6 +148,7 @@ const ResetPasswordPage = () => {
               htmlType="submit"
               loading={loading}
               style={{ width: "100%" }}
+              className={styles.resetBtn}
             >
               Reset Password
             </Button>

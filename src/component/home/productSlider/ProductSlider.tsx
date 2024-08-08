@@ -12,6 +12,7 @@ interface Product {
   actions: { text: string; icon?: string }[];
   width?: string;
   dontRotate?: boolean;
+  shape?: string;
 }
 
 interface ProductSliderProps {
@@ -112,7 +113,7 @@ const ProductSlider: React.FC<ProductSliderProps> = ({ products }) => {
           {products.map((val, index) => (
             <div className={`${styles.item} ${index === active ? styles.active : ""}`} key={index}>
               <figure>
-                <img src={val.img} alt="product" style={{width: val.width ? val.width: "", transform: val.dontRotate ? "rotate(0deg)": ""}}/>
+                <img src={val.img} alt="product" className={`${val.shape ? styles[val.shape] : styles.a}`} style={{width: val.width ? val.width: "", transform: val.dontRotate ? "rotate(0deg)": ""}}/>
               </figure>
               <div className={styles.content}>
                 <p className={styles.category}>{val.category}</p>

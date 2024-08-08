@@ -8,7 +8,7 @@ import Homepage from "../component/home/Homepage";
 import ProtectedRoute from "../component/Auth/ProtectedRoute";
 import Profile from "../component/profile/Profile";
 import NotFound from "../pages/notFound/NotFound";
-import ResetPasswordPage from "../component/Auth/ResetPwd";
+import ResetPasswordPage from "../component/Auth/login/ResetPwd";
 import ResetpwdRouteProtection from "../component/Auth/ResetpwdRouteProtection";
 import { RootState } from "../redux/store";
 import Interest from "../pages/portal/Interest";

@@ -5,7 +5,6 @@ import {
 } from "@react-oauth/google";
 import axios, { AxiosError } from "axios";
 import { message } from "antd";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   ReRender,
@@ -17,7 +16,6 @@ const clientId = import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID;
 
 const GoogleAuth: FC<{ authMethod: string }> = ({ authMethod }) => {
   const backendApiUrl = import.meta.env.VITE_BACKEND_API_URL;
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   // const reRender = useSelector((state: any) => state.counter.ReRender);
   const handleSignupSuccess = async (response: GoogleCredentialResponse) => {
@@ -36,7 +34,6 @@ const GoogleAuth: FC<{ authMethod: string }> = ({ authMethod }) => {
       message.success(res.data.message);
       if (res.data.newUser) {
         dispatch(ReRenderOfSignup());
-        navigate("/auth/createpassword");
       } else dispatch(ReRender());
     } catch (error: unknown) {
       const axiosError = error as AxiosError<{ message: string }>;

@@ -50,8 +50,8 @@ const LoginForm: FC = () => {
       message.success(response.data.message);
       if (response) {
         setLoading(false);
-        close();
         dispatch(ReRender()); // Dispatch the ReRender action
+        navigate("/");
       }
     } catch (error) {
       // Type the error as AxiosError to properly access the response property
@@ -63,6 +63,7 @@ const LoginForm: FC = () => {
 
   const handleForgotPassword = async () => {
     const emailOrUsername = form.getFieldValue("emailOrUsername");
+    console.log(emailOrUsername)
     if (!emailOrUsername) {
       message.warning("Please enter your email.");
       return;
@@ -90,7 +91,7 @@ const LoginForm: FC = () => {
         clearTimeout(loadingTimeout)
         message.success(apiMsg);
         dispatch(canResetpwd());
-        navigate("auth/resetpwd");
+        navigate("/auth/resetpwd");
       } else message.error(apiMsg || "Some error occurd try after sometime");
     } catch (error) {
       console.log(error);
@@ -102,7 +103,7 @@ const LoginForm: FC = () => {
       });
       if (errMsg == "OTP already sent") {
         dispatch(canResetpwd());
-        navigate("auth/resetpwd");
+        navigate("/auth/resetpwd");
       }
     }
   };

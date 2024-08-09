@@ -14,7 +14,10 @@ export interface CounterState {
   ReRender: boolean;
   ReRenderOfSignup: boolean;
   canResetpwd: boolean;
-  userEmail: string;
+  userEmail: {
+    affinameList?: [];
+    emailOrUsername: string | undefined;
+  };
   interest: boolean;
   userInfo: UserInfoo;
 }
@@ -25,7 +28,10 @@ const initialState: CounterState = {
   ReRender: false,
   ReRenderOfSignup: false,
   canResetpwd: false,
-  userEmail: "",
+  userEmail: {
+    affinameList: [],
+    emailOrUsername: undefined
+  },
   interest: false,
   userInfo: {
     affiname: undefined,
@@ -50,7 +56,7 @@ export const counterSlice = createSlice({
     canResetpwd: (state) => {
       state.canResetpwd = !state.canResetpwd;
     },
-    userEmail: (state, action: PayloadAction<string>) => {
+    userEmail: (state, action: PayloadAction<{emailOrUsername:string; affinameList?:[]}>) => {
       state.userEmail = action.payload;
     },
     interest: (state) => {

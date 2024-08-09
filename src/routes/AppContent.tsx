@@ -87,8 +87,14 @@ function AppContent() {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
-      <Route path="/login" element={isAuthenticated ? <Homepage /> : <Login />}/>
-      <Route path="/signup" element={isAuthenticated ? <Homepage /> : <Signup />}/>
+      <Route
+        path="/login"
+        element={isAuthenticated ? <Homepage /> : <Login />}
+      />
+      <Route
+        path="/signup"
+        element={isAuthenticated ? <Homepage /> : <Signup />}
+      />
       <Route
         path="/auth/createpassword"
         element={

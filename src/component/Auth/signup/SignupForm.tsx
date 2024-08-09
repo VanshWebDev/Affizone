@@ -1,4 +1,4 @@
-import { Form, Input, Button, message } from "antd";
+import { Form, Input, Button, message, notification } from "antd";
 import axios, { AxiosError } from "axios";
 import { Suspense, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -11,11 +11,12 @@ import CreateUsername from "./CreateUsername";
 const SignupForm = () => {
   const backendApiUrl = import.meta.env.VITE_BACKEND_API_URL;
   const navigate = useNavigate();
-  const [messageApi, contextHolder] = message.useMessage();
+  const [messageApi, contextHolderr] = message.useMessage();
   const key = "updatable";
   const [form] = Form.useForm();
   const [isLoading, setIsLoading] = useState(false);
   const [isEmailVerified, setIsEmailVerified] = useState(false);
+  const [api, contextHolder] = notification.useNotification();
 
   const onFinish = async (values: { email: string; otp: string }) => {
     console.log("Success:", values);
@@ -46,7 +47,7 @@ const SignupForm = () => {
     console.log("Failed:", errorInfo);
   };
 
-  const handleSendOtp = async () => {
+  const handleSendOtp = async (wantToCreateNewAcc:boolean) => {
     let loadingTimeout;
     messageApi.open({ key, type: "loading", content: "Sending OTP..." });
     loadingTimeout = setTimeout(() => {
@@ -56,10 +57,28 @@ const SignupForm = () => {
     try {
       const response = await axios.post(
         `${backendApiUrl}/auth/sendotp`,
-        { email: form.getFieldValue("email") },
+        { email: form.getFieldValue("email"),wantToCreateNewAcc },
         { withCredentials: true }
       );
       console.log(response);
+      if (response.data.exist) {
+        api.open({
+          message: "Account Exists",
+          description:
+            "An account with this email exists. Do you want to create another without deleting the existing one?",
+          duration: 0,
+          btn: (
+            <div>
+              <Button type="primary" onClick={handleYes}>
+                Yes
+              </Button>
+              <Button style={{ marginLeft: 8 }} onClick={handleNo}>
+                No
+              </Button>
+            </div>
+          ),
+        });
+      }
       clearInterval(loadingTimeout);
       if (response.status === 200) {
         const { message, emailSent } = response.data;
@@ -69,6 +88,7 @@ const SignupForm = () => {
       }
     } catch (err: unknown) {
       if (err instanceof AxiosError) {
+        console.log(err)
         clearInterval(loadingTimeout);
         messageApi.open({
           key,
@@ -78,10 +98,19 @@ const SignupForm = () => {
       }
     }
   };
+  const handleYes = () => {
+    handleSendOtp(true);
+    api.destroy();
+  };
 
+  const handleNo = () => {
+    console.log("No clicked");
+    api.destroy();
+  };
   return (
     <div className={styles.signupFormContainer}>
       {contextHolder}
+      {contextHolderr}
       <div className={styles.signupForm}>
         <p className={styles.title}>Sign up</p>
         {!isEmailVerified && (
@@ -123,7 +152,7 @@ const SignupForm = () => {
                 />
               </Form.Item>
               <div className={styles.sendOtp}>
-                <div onClick={handleSendOtp}>Send OTP</div>
+                <div onClick={()=>handleSendOtp(false)}>Send OTP</div>
               </div>
               <Button
                 type="link"

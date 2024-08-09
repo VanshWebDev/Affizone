@@ -329,10 +329,10 @@
     display: flex;
     justify-content: center;
   }
-  .carousel .list .item figure .rectangle{
+  .rectangle{
     width: 98% !important;
-    top: 40px;
-    /* border: 1px solid red; */
+   position: relative;
+   top: 50px;
   }
   .square{
     width: 85% !important;

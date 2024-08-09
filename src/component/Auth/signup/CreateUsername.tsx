@@ -15,7 +15,6 @@ const CreateUsername:FC<{email:string}> = ({ email }) => {
   const [timer, setTimer] = useState(120);
   const [usernameFeedback, setUsernameFeedback] = useState("");
   const [debounceTimer, setDebounceTimer] = useState<number | null>(null);
-  console.log("this is ", email);
 
   interface values {
     username: string;
@@ -35,6 +34,7 @@ const CreateUsername:FC<{email:string}> = ({ email }) => {
       console.log(response);
       
       message.success(response.data.message);
+      if(response.data.isNewUser) navigate("/");
       setIsLoading(false);
     } catch (err: unknown) {
       ErrHandling(err, "")

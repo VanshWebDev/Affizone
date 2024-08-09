@@ -24,6 +24,8 @@ interface LoginFormValues {
 interface ApiResponse {
   message: string;
   emailSent: boolean;
+  multipleUser?:boolean;
+  affinameList?: [];
 }
 
 const LoginForm: FC = () => {
@@ -85,11 +87,16 @@ const LoginForm: FC = () => {
         }
       );
       // message.loading({content:"checking mail..",key:"loading"})
-      const { message: apiMsg, emailSent } = response.data;
+      const { message: apiMsg, emailSent,multipleUser, affinameList } = response.data;
       if (emailSent) {
         console.log(response);
         clearTimeout(loadingTimeout)
         message.success(apiMsg);
+
+        if(multipleUser){
+          dispatch(userEmail({emailOrUsername,affinameList}))
+        }
+
         dispatch(canResetpwd());
         navigate("/auth/resetpwd");
       } else message.error(apiMsg || "Some error occurd try after sometime");
